@@ -86,15 +86,29 @@ int main(int argc, char *argv[])
 
     vector<int> *randomizedSetA = new vector<int>;
     vector<int> *randomizedSetB = new vector<int>;
-    GreedyConstruction(graph, vertex, randomizedSetA, randomizedSetB, 0);
-    int maxcutForRandomized = CalculateMaxCut(graph, vertex, randomizedSetA, randomizedSetB);
+    int sumOfMaxcut = 0;
+    for(int i=0;i<10;i++){
+        GreedyConstruction(graph, vertex, randomizedSetA, randomizedSetB, 0);
+        sumOfMaxcut += CalculateMaxCut(graph, vertex, randomizedSetA, randomizedSetB);
+        randomizedSetA->clear();
+        randomizedSetB->clear();
+    }
+    int maxcutForRandomized = sumOfMaxcut/10;
 
     // semi-greedy construction
 
     vector<int> *semiGreedySetA = new vector<int>;
     vector<int> *semiGreedySetB = new vector<int>;
-    GreedyConstruction(graph, vertex, semiGreedySetA, semiGreedySetB, alpha);
-    int maxcutForSemiGreedy = CalculateMaxCut(graph, vertex, semiGreedySetA, semiGreedySetB);
+    sumOfMaxcut = 0;
+    for(int i=0;i<10;i++){
+        GreedyConstruction(graph, vertex, semiGreedySetA, semiGreedySetB, alpha);
+        sumOfMaxcut += CalculateMaxCut(graph, vertex, semiGreedySetA, semiGreedySetB);
+        semiGreedySetA->clear();
+        semiGreedySetB->clear();
+    }
+    int maxcutForSemiGreedy = sumOfMaxcut/10;
+
+    GreedyConstruction(graph, vertex, randomizedSetA, randomizedSetB, 0);
 
 
     // PrintSet(greedySetA);
@@ -106,7 +120,7 @@ int main(int argc, char *argv[])
 
     int* numOfIterationsForLocalSearch= new int;
     *numOfIterationsForLocalSearch = 0;
-    int maxcutForLocalSearch = LocalSearch(graph, vertex,semiGreedySetA, semiGreedySetB, numOfIterationsForLocalSearch);
+    int maxcutForLocalSearch = LocalSearch(graph, vertex,randomizedSetA, randomizedSetB, numOfIterationsForLocalSearch);
 
     vector<int> *set1ForGRASP = new vector<int>;
     vector<int> *set2ForGRASP = new vector<int>;
