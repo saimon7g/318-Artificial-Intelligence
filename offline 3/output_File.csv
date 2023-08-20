@@ -1,0 +1,2 @@
+Test Graph, Number of Vertices, Number of Edges, Alpha Value, Randomized Best Value, Greedy Best Value, Semi-Greedy Best Value, Num of iteration for Local, best value for Local, Num of iteration for GRASP,best value for GRASP
+set1/g1.rud,800,19176,0.5,11064,10978,10974,219,11367,100,11469
