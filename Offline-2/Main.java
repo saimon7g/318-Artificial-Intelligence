@@ -3,8 +3,8 @@ public class Main {
     public static void main(String[] args) {
         Board board = new Board();
         int turn = 0;
-        Agent agent0 = new Agent(5,2,0,true);
-        Agent agent1 = new Agent(5,2,1,false);
+        Agent agent0 = new Agent(5,1,0,true);
+        Agent agent1 = new Agent(5,4,1,false);
         agent0.setOpponent(agent1);
         agent1.setOpponent(agent0);
         while (!board.isGameOver()) {
